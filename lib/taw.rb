@@ -12,6 +12,10 @@ module Taw
     Calculator.new(opts).time_ago_in_words(time)
   end
 
+  def self.duration_in_words(duration, opts = {})
+    Calculator.new(opts).duration_in_words(duration)
+  end
+
   class Calculator
     def initialize(opts)
       @approx_units = opts[:approx]
@@ -23,6 +27,12 @@ module Taw
       output_distance
     end
 
+    def duration_in_words(duration)
+      self.distance = duration
+      calculate_distance
+      output_distance
+    end
+    
     private
 
     attr_accessor :distance,
